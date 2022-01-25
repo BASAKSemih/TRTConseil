@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 class VerifiedChecker implements UserCheckerInterface
 {
     public function checkPreAuth(UserInterface $user): void
@@ -28,5 +27,4 @@ class VerifiedChecker implements UserCheckerInterface
             throw new UnsupportedUserException('Veuillez vérifier votre email');
         }
     }
-
 }

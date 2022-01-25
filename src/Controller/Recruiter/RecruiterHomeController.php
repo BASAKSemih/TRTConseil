@@ -17,13 +17,16 @@ final class RecruiterHomeController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            $this->addFlash('error', "Erreur");
+            $this->addFlash('error', 'Erreur');
+
             return $this->redirectToRoute('homePage');
         }
         if (!$user instanceof Recruiter) {
-            $this->addFlash('error', "Erreur 2");
+            $this->addFlash('error', 'Erreur 2');
+
             return $this->redirectToRoute('homePage');
         }
+
         return $this->render('recruiter/home.html.twig');
     }
 }
