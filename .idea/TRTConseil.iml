@@ -111,6 +111,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/doctrine-migrations-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/proxy-manager-lts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsoftwig/twigcs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmd/phpmd" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pdepend/pdepend" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
