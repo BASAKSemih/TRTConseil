@@ -53,5 +53,4 @@ class SecurityTest extends WebTestCase
         $client->submit($form);
         self::assertRouteSame('security_consultant_login');
     }
-
 }
