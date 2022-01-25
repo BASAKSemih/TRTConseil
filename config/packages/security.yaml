@@ -11,7 +11,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_recruiter_provider:
             entity:
-                class: App\Entity\Recruiter
+                class: App\Entity\Recruiter\Recruiter
                 property: email
     firewalls:
         dev:

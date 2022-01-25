@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Recruiter;
+use App\Entity\Recruiter\Recruiter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
