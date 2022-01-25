@@ -38,4 +38,19 @@ class SecurityTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('recruiter_homePage');
     }
+
+    public function testLoginRecruiterWithVerifiedCandidateAccount(): void
+    {
+        $client = static::createClient();
+        /** @var RouterInterface $router */
+        $router = $client->getContainer()->get('router');
+        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_recruiter_login'));
+        $form = $crawler->filter('form[name=login]')->form([
+            'email' => 'candidat@verif.fr',
+            'password' => '12',
+        ]);
+
+        $client->submit($form);
+        self::assertRouteSame('security_recruiter_login');
+    }
 }
