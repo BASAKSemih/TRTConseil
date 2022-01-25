@@ -20,6 +20,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            user_checker: App\Security\VerifiedChecker
+            custom_authenticator: App\Security\RecruiterAuthenticator
+            logout:
+                path: security_recruiter_logout
+                target: homePage
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

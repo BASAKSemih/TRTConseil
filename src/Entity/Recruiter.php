@@ -42,7 +42,7 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     private string $lastName;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isActive = false;
+    private bool $isVerified = false;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
@@ -176,14 +176,14 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsActive(): ?bool
+    public function getIsVerified(): ?bool
     {
-        return $this->isActive;
+        return $this->isVerified;
     }
 
-    public function setIsActive(bool $isActive): self
+    public function setIsVerified(bool $isVerified): self
     {
-        $this->isActive = $isActive;
+        $this->isVerified = $isVerified;
 
         return $this;
     }
