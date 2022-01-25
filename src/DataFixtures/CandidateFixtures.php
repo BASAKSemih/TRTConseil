@@ -26,6 +26,16 @@ final class CandidateFixtures extends Fixture
             ->setPassword($this->userPasswordHasher->hashPassword($candidate, '12'));
 
         $manager->persist($candidate);
+
+        $candidate2 = new Candidate();
+        $candidate2
+            ->setEmail('candidat@verif.fr')
+            ->setFirstName('John')
+            ->setLastName('Doe')
+            ->setIsVerified(true)
+            ->setPassword($this->userPasswordHasher->hashPassword($candidate2, '12'));
+
+        $manager->persist($candidate2);
         $manager->flush();
     }
 }

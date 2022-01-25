@@ -25,11 +25,11 @@ security:
             lazy: true
             pattern: ^/espace-candidat
             provider: app_candidate_provider
+            user_checker: App\Security\Candidate\CandidateChecker
             custom_authenticator: App\Security\Candidate\CandidateAuthenticator
             logout:
                 path: security_candidate_logout
                 target: homePage
-
         recruiter:
             lazy: true
             pattern: ^/espace-recruteur
