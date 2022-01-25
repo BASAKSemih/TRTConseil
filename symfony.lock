@@ -351,6 +351,9 @@
     "symfony/asset": {
         "version": "v5.4.0"
     },
+    "symfony/browser-kit": {
+        "version": "v5.4.2"
+    },
     "symfony/cache": {
         "version": "v5.4.2"
     },
@@ -371,6 +374,9 @@
         "files": [
             "bin/console"
         ]
+    },
+    "symfony/css-selector": {
+        "version": "v5.4.2"
     },
     "symfony/debug-bundle": {
         "version": "5.4",
@@ -395,6 +401,9 @@
     },
     "symfony/doctrine-messenger": {
         "version": "v5.4.0"
+    },
+    "symfony/dom-crawler": {
+        "version": "v5.4.2"
     },
     "symfony/dotenv": {
         "version": "v5.4.2"
