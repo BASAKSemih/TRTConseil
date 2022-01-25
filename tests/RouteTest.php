@@ -18,5 +18,4 @@ final class RouteTest extends WebTestCase
         $crawler = $client->request(Request::METHOD_GET, $router->generate('homePage'));
         self::assertRouteSame('homePage');
     }
-
 }
