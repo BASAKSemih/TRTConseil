@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Candidate;
+use App\Entity\Candidate\Candidate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;

@@ -13,16 +13,29 @@ security:
             entity:
                 class: App\Entity\Recruiter\Recruiter
                 property: email
+        app_candidate_provider:
+            entity:
+                class: App\Entity\Candidate\Candidate
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        candidate:
+            lazy: true
+            pattern: ^/espace-candidat
+            provider: app_candidate_provider
+            custom_authenticator: App\Security\Candidate\CandidateAuthenticator
+            logout:
+                path: security_candidate_logout
+                target: homePage
+
+        recruiter:
             lazy: true
             pattern: ^/espace-recruteur
             provider: app_recruiter_provider
-            user_checker: App\Security\VerifiedChecker
-            custom_authenticator: App\Security\RecruiterAuthenticator
+            user_checker: App\Security\Recruiter\RecruiterChecker
+            custom_authenticator: App\Security\Recruiter\RecruiterAuthenticator
             logout:
                 path: security_recruiter_logout
                 target: homePage
