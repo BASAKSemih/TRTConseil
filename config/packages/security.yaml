@@ -17,10 +17,22 @@ security:
             entity:
                 class: App\Entity\Candidate\Candidate
                 property: email
+        app_consultant_provider:
+            entity:
+                class: App\Entity\Consultant\Consultant
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        consultant:
+            lazy: true
+            pattern: ^/espace-consultant
+            provider: app_consultant_provider
+            custom_authenticator: App\Security\Consultant\ConsultantAuthenticator
+            logout:
+                path: security_candidate_logout
+                target: homePage
         candidate:
             lazy: true
             pattern: ^/espace-candidat
