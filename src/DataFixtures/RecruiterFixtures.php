@@ -15,7 +15,7 @@ class RecruiterFixtures extends Fixture
     {
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $recruiter1 = new Recruiter();
         $recruiter1
