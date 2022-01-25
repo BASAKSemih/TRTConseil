@@ -49,7 +49,7 @@ class RecruiterAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('homePage'));
+        return new RedirectResponse($this->urlGenerator->generate('recruiter_homePage'));
     }
 
     protected function getLoginUrl(Request $request): string

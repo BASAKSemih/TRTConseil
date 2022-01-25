@@ -17,7 +17,7 @@ class RecruiterSecurityController extends AbstractController
         if ($this->getUser()) {
             $this->addFlash('warning', 'Vous êtes déjà connecter');
 
-            return $this->redirectToRoute('homePage');
+            return $this->redirectToRoute('recruiter_homePage');
         }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

@@ -36,7 +36,7 @@ class SecurityTest extends WebTestCase
 
         $client->submit($form);
         $client->followRedirect();
-        self::assertRouteSame('homePage');
+        self::assertRouteSame('recruiter_homePage');
     }
 
 }
