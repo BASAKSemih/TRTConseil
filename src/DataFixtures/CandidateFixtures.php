@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Recruiter\Recruiter;
+use App\Entity\Candidate\Candidate;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-final class RecruiterFixtures extends Fixture
+final class CandidateFixtures extends Fixture
 {
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
     {
@@ -17,24 +17,24 @@ final class RecruiterFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $recruiter1 = new Recruiter();
-        $recruiter1
-            ->setEmail('recruteur@info.fr')
+        $candidate = new Candidate();
+        $candidate
+            ->setEmail('candidat@info.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
-            ->setPassword($this->userPasswordHasher->hashPassword($recruiter1, '12'));
+            ->setPassword($this->userPasswordHasher->hashPassword($candidate, '12'));
 
-        $manager->persist($recruiter1);
+        $manager->persist($candidate);
 
-        $recruiter2 = new Recruiter();
-        $recruiter2
-            ->setEmail('recruteur@verif.fr')
+        $candidate2 = new Candidate();
+        $candidate2
+            ->setEmail('candidat@verif.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
             ->setIsVerified(true)
-            ->setPassword($this->userPasswordHasher->hashPassword($recruiter2, '12'));
+            ->setPassword($this->userPasswordHasher->hashPassword($candidate2, '12'));
 
-        $manager->persist($recruiter2);
+        $manager->persist($candidate2);
         $manager->flush();
     }
 }

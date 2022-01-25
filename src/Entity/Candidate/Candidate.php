@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Recruiter;
+namespace App\Entity\Candidate;
 
-use App\Repository\Recruiter\RecruiterRepository;
+use App\Repository\Candidate\CandidateRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -12,8 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-#[ORM\Entity(repositoryClass: RecruiterRepository::class)]
-class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: CandidateRepository::class)]
+class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

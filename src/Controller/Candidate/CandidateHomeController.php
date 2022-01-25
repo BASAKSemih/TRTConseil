@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Recruiter;
+namespace App\Controller\Candidate;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(name: 'recruiter_')]
-final class RecruiterHomeController extends AbstractController
+#[Route(name: 'candidate_')]
+final class CandidateHomeController extends AbstractController
 {
-    #[Route('/espace-recruteur', name: 'homePage')]
+    #[Route('/espace-candidat', name: 'homePage')]
     public function homePage(): Response
     {
         $user = $this->getUser();
@@ -21,6 +21,6 @@ final class RecruiterHomeController extends AbstractController
             return $this->redirectToRoute('homePage');
         }
 
-        return $this->render('recruiter/home.html.twig');
+        return $this->render('candidate/home.html.twig');
     }
 }

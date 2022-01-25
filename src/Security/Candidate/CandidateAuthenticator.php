@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Security;
+declare(strict_types=1);
+
+namespace App\Security\Candidate;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +17,9 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
-class RecruiterAuthenticator extends AbstractLoginFormAuthenticator
+class CandidateAuthenticator extends AbstractLoginFormAuthenticator
 {
-    public const LOGIN_ROUTE = 'security_recruiter_login';
+    public const LOGIN_ROUTE = 'security_candidate_login';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -48,7 +50,7 @@ class RecruiterAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('recruiter_homePage'));
+        return new RedirectResponse($this->urlGenerator->generate('candidate_homePage'));
     }
 
     protected function getLoginUrl(Request $request): string

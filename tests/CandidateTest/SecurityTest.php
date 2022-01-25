@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\RecruiterTest;
+namespace App\Tests\CandidateTest;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,49 +8,49 @@ use Symfony\Component\Routing\RouterInterface;
 
 class SecurityTest extends WebTestCase
 {
-    public function testLoginRecruiterWithNoVerifiedAccount(): void
+    public function testLoginCandidateWithNoVerifiedAccount(): void
     {
         $client = static::createClient();
         /** @var RouterInterface $router */
         $router = $client->getContainer()->get('router');
-        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_recruiter_login'));
+        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_candidate_login'));
         $form = $crawler->filter('form[name=login]')->form([
-            'email' => 'recruteur@info.fr',
+            'email' => 'candidat@info.fr',
             'password' => '12',
         ]);
 
         $client->submit($form);
-        self::assertRouteSame('security_recruiter_login');
+        self::assertRouteSame('security_candidate_login');
     }
 
-    public function testLoginRecruiterWithVerifiedAccount(): void
+    public function testLoginCandidateWithVerifiedAccount(): void
     {
         $client = static::createClient();
         /** @var RouterInterface $router */
         $router = $client->getContainer()->get('router');
-        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_recruiter_login'));
-        $form = $crawler->filter('form[name=login]')->form([
-            'email' => 'recruteur@verif.fr',
-            'password' => '12',
-        ]);
-
-        $client->submit($form);
-        $client->followRedirect();
-        self::assertRouteSame('recruiter_homePage');
-    }
-
-    public function testLoginRecruiterWithVerifiedCandidateAccount(): void
-    {
-        $client = static::createClient();
-        /** @var RouterInterface $router */
-        $router = $client->getContainer()->get('router');
-        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_recruiter_login'));
+        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_candidate_login'));
         $form = $crawler->filter('form[name=login]')->form([
             'email' => 'candidat@verif.fr',
             'password' => '12',
         ]);
 
         $client->submit($form);
-        self::assertRouteSame('security_recruiter_login');
+        $client->followRedirect();
+        self::assertRouteSame('candidate_homePage');
+    }
+
+    public function testLoginCandidateWithRecruiterVerifiedAccount(): void
+    {
+        $client = static::createClient();
+        /** @var RouterInterface $router */
+        $router = $client->getContainer()->get('router');
+        $crawler = $client->request(Request::METHOD_GET, $router->generate('security_candidate_login'));
+        $form = $crawler->filter('form[name=login]')->form([
+            'email' => 'recruteur@verif.fr',
+            'password' => '12',
+        ]);
+
+        $client->submit($form);
+        self::assertRouteSame('security_candidate_login');
     }
 }
