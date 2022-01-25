@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\Recruiter\Recruiter;
@@ -7,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class RecruiterFixtures extends Fixture
+final class RecruiterFixtures extends Fixture
 {
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Candidate\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route(name: 'security_candidate_')]
-class CandidateSecurityController extends AbstractController
+final class CandidateSecurityController extends AbstractController
 {
     #[Route('/espace-candidat/connexion', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -22,7 +24,10 @@ class CandidateSecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('candidate/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('candidate/security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
     }
 
     #[Route('/espace-candidat/deconnexion', name: 'logout')]

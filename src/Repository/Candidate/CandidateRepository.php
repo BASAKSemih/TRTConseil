@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Repository;
+declare(strict_types=1);
+
+namespace App\Repository\Candidate;
 
 use App\Entity\Candidate\Candidate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -12,14 +14,14 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 /**
  * @method Candidate|null find($id, $lockMode = null, $lockVersion = null)
  * @method Candidate|null findOneBy(array $criteria, array $orderBy = null)
- * @method                findAll()                                          array<int, Candidate>
+ * @method                findAll()                                                                     array<int, Candidate>
  * @method                findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, Candidate>
  *
  * @template T
  *
  * @extends ServiceEntityRepository<Candidate>
  */
-class CandidateRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+final class CandidateRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
