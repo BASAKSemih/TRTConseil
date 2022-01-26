@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        {% if candidate %}
+            <div>
+                <label for="">{{ candidate.firstName }}</label>
+                <label for="">{{ candidate.lastName }}</label>
+                <label for="">{{ candidate.email }}</label>
+                <label for="">{{ candidate.createdAt|date('d/m/Y') }}</label>
+                <label for="">{% if candidate.isVerified == false %}
+                        <a href="{{ path('consultant_confirm_account_candidate', {'idCandidate': candidate.id}) }}" class="btn btn-info">Vérifier le compte</a>
+                    {% else %}
+                        Compte déjà vérifier
+                    {% endif %}</label>
+            </div>
+        {% else %}
+            <h3>Ce compte candidat n'existe pas erreur</h3>
+        {% endif %}
+    </div>
+
+{% endblock %}

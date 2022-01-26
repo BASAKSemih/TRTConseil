@@ -24,7 +24,7 @@ class SecurityTest extends WebTestCase
         self::assertRouteSame('consultant_homePage');
     }
 
-    public function testLoginWithCandidateAccount(): void
+    public function testLoginWithFailCandidateAccount(): void
     {
         $client = static::createClient();
         /** @var RouterInterface $router */
@@ -39,7 +39,7 @@ class SecurityTest extends WebTestCase
         self::assertRouteSame('security_consultant_login');
     }
 
-    public function testLoginWithRecruiterAccount(): void
+    public function testLoginFailWithRecruiterAccount(): void
     {
         $client = static::createClient();
         /** @var RouterInterface $router */
