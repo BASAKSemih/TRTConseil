@@ -33,7 +33,7 @@ final class ConsultantCandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/espace-consultant/confirmer-inscription/{idCandidate}', name: 'confirm_account_candidate')]
+    #[Route('/espace-consultant/confirmer-inscription-candidat/{idCandidate}', name: 'confirm_account_candidate')]
     public function confirmCandidateAccount(int $idCandidate): RedirectResponse
     {
         $candidate = $this->candidateRepository->findOneById($idCandidate);
@@ -44,7 +44,7 @@ final class ConsultantCandidateController extends AbstractController
         }
         $candidate->setIsVerified(true);
         $this->entityManager->flush();
-        $this->addFlash('success', 'Le compte à bien été vérifier');
+        $this->addFlash('success', 'Le compte candidat à bien été vérifier');
 
         return $this->redirectToRoute('consultant_show_all');
     }
