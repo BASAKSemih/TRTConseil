@@ -88,6 +88,8 @@ class ConsultantConfirmCandidateAccountTest extends WebTestCase
             'idCandidate' => $candidate->getId(),
         ]));
         self::assertRouteSame('consultant_confirm_account_candidate');
+        $client->followRedirect();
+        self::assertRouteSame('consultant_show_all');
     }
 
     public function testLoginCandidateWithSameAccountVerified(): void

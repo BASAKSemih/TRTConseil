@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        {% if recruiter %}
+            <div>
+                <label for="">{{ recruiter.firstName }}</label>
+                <label for="">{{ recruiter.lastName }}</label>
+                <label for="">{{ recruiter.email }}</label>
+                <label for="">{{ recruiter.createdAt|date('d/m/Y') }}</label>
+                <label for="">{% if recruiter.isVerified == false %}
+                        <a href="{{ path('consultant_confirm_account_recruiter', {'idRecruiter': recruiter.id}) }}" class="btn btn-info">Vérifier le compte</a>
+                    {% else %}
+                        Compte déjà vérifier
+                    {% endif %}</label>
+            </div>
+        {% else %}
+            <h3>Ce compte candidat n'existe pas erreur</h3>
+        {% endif %}
+    </div>
+
+{% endblock %}
