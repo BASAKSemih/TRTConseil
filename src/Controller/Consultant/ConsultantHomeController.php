@@ -57,7 +57,7 @@ final class ConsultantHomeController extends AbstractController
     }
 
     #[Route('/espace-consultant/confirmer-inscription/{idCandidate}', name: 'confirm_account_candidate')]
-    public function ConfirmAccount(int $idCandidate): RedirectResponse
+    public function confirmCandidateAccount(int $idCandidate): RedirectResponse
     {
         $candidate = $this->candidateRepository->findOneById($idCandidate);
         if (!$candidate) {
