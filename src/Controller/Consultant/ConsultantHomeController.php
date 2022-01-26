@@ -6,7 +6,6 @@ namespace App\Controller\Consultant;
 
 use App\Repository\Candidate\CandidateRepository;
 use App\Repository\Recruiter\RecruiterRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +38,7 @@ final class ConsultantHomeController extends AbstractController
 
         return $this->render('consultant/showAll.html.twig', [
             'candidates' => $candidates,
-            'recruiters' => $recruiters
+            'recruiters' => $recruiters,
         ]);
     }
 }
