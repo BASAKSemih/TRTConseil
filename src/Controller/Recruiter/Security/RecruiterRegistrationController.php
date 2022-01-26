@@ -57,5 +57,4 @@ final class RecruiterRegistrationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 }
