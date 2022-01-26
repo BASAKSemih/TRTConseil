@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Consultant\Security;
 
-use App\Repository\Candidate\CandidateRepository;
 use App\Repository\Recruiter\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
