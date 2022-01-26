@@ -61,7 +61,7 @@ class ConsultantConfirmCandidateAccountTest extends WebTestCase
         $candidate = $candidateRepository->findOneByEmail('candidat@info.fr');
 
         $crawler = $client->request(Request::METHOD_GET, $router->generate('consultant_show_candidate', [
-            'idCandidate' => $candidate->getId()
+            'idCandidate' => $candidate->getId(),
         ]));
         self::assertRouteSame('consultant_show_candidate');
     }
@@ -85,7 +85,7 @@ class ConsultantConfirmCandidateAccountTest extends WebTestCase
         $candidate = $candidateRepository->findOneByEmail('candidat@info.fr');
 
         $crawler = $client->request(Request::METHOD_GET, $router->generate('consultant_confirm_account_candidate', [
-            'idCandidate' => $candidate->getId()
+            'idCandidate' => $candidate->getId(),
         ]));
         self::assertRouteSame('consultant_confirm_account_candidate');
     }
@@ -105,5 +105,4 @@ class ConsultantConfirmCandidateAccountTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('candidate_homePage');
     }
-
 }

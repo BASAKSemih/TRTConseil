@@ -35,8 +35,9 @@ final class ConsultantHomeController extends AbstractController
     public function showAllNoVerifiedUser(): Response
     {
         $candidates = $this->candidateRepository->findByIsVerified(false);
+
         return $this->render('consultant/showAll.html.twig', [
-            'candidates' => $candidates
+            'candidates' => $candidates,
         ]);
     }
 
@@ -46,10 +47,12 @@ final class ConsultantHomeController extends AbstractController
         $candidate = $this->candidateRepository->findOneById($idCandidate);
         if (!$candidate) {
             $this->addFlash('warning', "Ce compte candidat n'existe pas");
+
             return $this->redirectToRoute('consultant_show_all');
         }
+
         return $this->render('consultant/candidate/show.html.twig', [
-            'candidate' => $candidate
+            'candidate' => $candidate,
         ]);
     }
 
@@ -59,11 +62,13 @@ final class ConsultantHomeController extends AbstractController
         $candidate = $this->candidateRepository->findOneById($idCandidate);
         if (!$candidate) {
             $this->addFlash('warning', "Ce compte candidat n'existe pas");
+
             return $this->redirectToRoute('consultant_show_all');
         }
         $candidate->setIsVerified(true);
         $this->entityManager->flush();
-        $this->addFlash('success', "Le compte à bien été vérifier");
+        $this->addFlash('success', 'Le compte à bien été vérifier');
+
         return $this->redirectToRoute('consultant_show_all');
     }
 }
