@@ -217,15 +217,15 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeJobOffer(JobOffer $jobOffer): self
-    {
-        if ($this->jobOffers->removeElement($jobOffer)) {
-            // set the owning side to null (unless already changed)
-            if ($jobOffer->getRecruiter() === $this) {
-                $jobOffer->setRecruiter(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function removeJobOffer(JobOffer $jobOffer): self
+//    {
+//        if ($this->jobOffers->removeElement($jobOffer)) {
+//            // set the owning side to null (unless already changed)
+//            if ($jobOffer->getRecruiter() === $this) {
+//                $jobOffer->setRecruiter(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }
