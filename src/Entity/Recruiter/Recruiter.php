@@ -49,6 +49,9 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    #[ORM\OneToOne(mappedBy: 'recruiter', targetEntity: Company::class, cascade: ['persist', 'remove'])]
+    private ?Company $company;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -186,6 +189,23 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(Company $company): self
+    {
+        // set the owning side of the relation if necessary
+        if ($company->getRecruiter() !== $this) {
+            $company->setRecruiter($this);
+        }
+
+        $this->company = $company;
 
         return $this;
     }
