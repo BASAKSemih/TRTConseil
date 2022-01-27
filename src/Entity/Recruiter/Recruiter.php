@@ -6,6 +6,8 @@ namespace App\Entity\Recruiter;
 
 use App\Repository\Recruiter\RecruiterRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,9 +51,16 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    /**
+     * @var Collection<Annouce>
+     */
+    #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: Annouce::class)]
+    private Collection $annouces;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->annouces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,4 +198,34 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Annouce[]
+     */
+    public function getAnnouces(): Collection
+    {
+        return $this->annouces;
+    }
+
+    public function addAnnouce(Annouce $annouce): self
+    {
+        if (!$this->annouces->contains($annouce)) {
+            $this->annouces[] = $annouce;
+            $annouce->setRecruiter($this);
+        }
+
+        return $this;
+    }
+
+//    public function removeAnnouce(Annouce $annouce): self
+//    {
+//        if ($this->annouces->removeElement($annouce)) {
+//            // set the owning side to null (unless already changed)
+//            if ($annouce->getRecruiter() === $this) {
+//                $annouce->setRecruiter(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }
