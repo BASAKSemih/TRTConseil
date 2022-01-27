@@ -21,7 +21,7 @@ final class RecruiterHomeController extends AbstractController
     {
         /** @var Recruiter $recruiter */
         $recruiter = $this->getUser();
-        /** @phpstan-ignore-next-line  */
+        /* @phpstan-ignore-next-line  */
         if (!$recruiter) {
             $this->addFlash('error', 'Erreur');
 
@@ -36,7 +36,7 @@ final class RecruiterHomeController extends AbstractController
     {
         /** @var Recruiter $recruiter */
         $recruiter = $this->getUser();
-        /** @phpstan-ignore-next-line  */
+        /* @phpstan-ignore-next-line  */
         if (!$recruiter) {
             $this->addFlash('error', 'Erreur');
 
@@ -49,10 +49,12 @@ final class RecruiterHomeController extends AbstractController
             $entityManager->persist($jobOffer);
             $entityManager->flush();
             $this->addFlash('success', "l'annonce d'emploie à bien été crée");
+
             return $this->redirectToRoute('recruiter_homePage');
         }
+
         return $this->render('recruiter/jobOffer/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

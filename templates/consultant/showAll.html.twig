@@ -77,7 +77,48 @@
                             {% endif %}
                         </th>
                         <th>
-                            <a href="" class="btn btn-info">Vérifier le compte</a>
+                            <a href="{{ path('consultant_confirm_account_recruiter', {'idRecruiter': recruiter.id}) }}" class="btn btn-info">Vérifier le compte</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    {% endif %}
+
+    {% if jobOffers %}
+        <div class="container table-responsive mt-4">
+            <h3>Les Offres Emploies non vérifier</h3>
+            <table class="table table-striped table-hover ">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom du job</th>
+                    <th scope="col">Emplacement</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">email du recruteur</th>
+                    <th scope="col">Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jobOffer in jobOffers %}
+                    <tr>
+                        <th scope="row">{{ jobOffer.id }}</th>
+                        <td>{{ jobOffer.jobName }}</td>
+                        <td>{{ jobOffer.workplace }}</td>
+                        <td>{{ jobOffer.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ jobOffer.recruiter.email }}</td>
+                        <th scope="col">
+                            {% if jobOffer.isVerified == false %}
+                                Offre à vérifier
+                            {% else %}
+                                Offre déjà vérifier
+                            {% endif %}
+                        </th>
+                        <th>
+                            <a href="" class="btn btn-info">Vérifier l'offre emploie</a>
                         </th>
                     </tr>
                 {% endfor %}

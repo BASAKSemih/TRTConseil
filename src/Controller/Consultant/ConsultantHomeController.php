@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Consultant;
 
 use App\Repository\Candidate\CandidateRepository;
+use App\Repository\Recruiter\JobOfferRepository;
 use App\Repository\Recruiter\RecruiterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(name: 'consultant_')]
 final class ConsultantHomeController extends AbstractController
 {
-    public function __construct(protected CandidateRepository $candidateRepository, protected RecruiterRepository $recruiterRepository)
-    {
+    public function __construct(
+        protected CandidateRepository $candidateRepository,
+        protected RecruiterRepository $recruiterRepository,
+        protected JobOfferRepository $jobOfferRepository
+    ) {
     }
 
     #[Route('/espace-consultant', name: 'homePage')]
@@ -35,10 +39,12 @@ final class ConsultantHomeController extends AbstractController
     {
         $candidates = $this->candidateRepository->findByIsVerified(false);
         $recruiters = $this->recruiterRepository->findByIsVerified(false);
+        $jobOffers = $this->jobOfferRepository->findByIsVerified(false);
 
         return $this->render('consultant/showAll.html.twig', [
             'candidates' => $candidates,
             'recruiters' => $recruiters,
+            'jobOffers' => $jobOffers,
         ]);
     }
 }
