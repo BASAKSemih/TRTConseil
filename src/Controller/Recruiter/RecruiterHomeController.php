@@ -21,6 +21,7 @@ final class RecruiterHomeController extends AbstractController
     {
         /** @var Recruiter $recruiter */
         $recruiter = $this->getUser();
+        /** @phpstan-ignore-next-line  */
         if (!$recruiter) {
             $this->addFlash('error', 'Erreur');
 
@@ -35,6 +36,7 @@ final class RecruiterHomeController extends AbstractController
     {
         /** @var Recruiter $recruiter */
         $recruiter = $this->getUser();
+        /** @phpstan-ignore-next-line  */
         if (!$recruiter) {
             $this->addFlash('error', 'Erreur');
 
