@@ -45,6 +45,11 @@ class Company
     #[ORM\JoinColumn(nullable: false)]
     private Recruiter $recruiter;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
