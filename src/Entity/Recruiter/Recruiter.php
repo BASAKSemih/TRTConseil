@@ -6,6 +6,8 @@ namespace App\Entity\Recruiter;
 
 use App\Repository\Recruiter\RecruiterRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,9 +51,16 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    /**
+     * @var Collection<JobOffer>
+     */
+    #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: JobOffer::class)]
+    private Collection $jobOffers;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->jobOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,4 +198,34 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|JobOffer[]
+     */
+    public function getJobOffers(): Collection
+    {
+        return $this->jobOffers;
+    }
+
+    public function addJobOffer(JobOffer $jobOffer): self
+    {
+        if (!$this->jobOffers->contains($jobOffer)) {
+            $this->jobOffers[] = $jobOffer;
+            $jobOffer->setRecruiter($this);
+        }
+
+        return $this;
+    }
+
+//    public function removeJobOffer(JobOffer $jobOffer): self
+//    {
+//        if ($this->jobOffers->removeElement($jobOffer)) {
+//            // set the owning side to null (unless already changed)
+//            if ($jobOffer->getRecruiter() === $this) {
+//                $jobOffer->setRecruiter(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }

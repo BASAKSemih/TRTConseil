@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal mt-5 pt-5">Inscription</h1>
+        {{ form_start(form) }}
+        <label for="">Nom du job</label>
+        {{ form_row(form.jobName) }}
+        <label for="">Lieu du job</label>
+        {{ form_row(form.workplace) }}
+        <label for="">description du job</label>
+        {{ form_row(form.description) }}
+        <label for="">salary du job</label>
+        {{ form_row(form.salary) }}
+        <label for="">Horraire du job</label>
+        {{ form_row(form.schedule) }}
+        {{ form_widget(form.submit, {'label': 'Crée sont compte'}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
