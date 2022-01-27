@@ -30,7 +30,7 @@ class JobOffer
     private string $schedule;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isVerified;
+    private bool $isVerified = false;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
