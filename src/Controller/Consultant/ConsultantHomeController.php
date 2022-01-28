@@ -47,4 +47,5 @@ final class ConsultantHomeController extends AbstractController
             'jobOffers' => $jobOffers,
         ]);
     }
+
 }

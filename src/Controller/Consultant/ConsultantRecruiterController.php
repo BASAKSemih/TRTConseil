@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Consultant\Security;
+namespace App\Controller\Consultant;
 
 use App\Repository\Recruiter\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
