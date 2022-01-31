@@ -68,8 +68,9 @@ final class ConsultantHomeController extends AbstractController
 
             return $this->redirectToRoute('consultant_show_all');
         }
+
         return $this->render('consultant/JobOffer/show.html.twig', [
-            'jobOffer' => $jobOffer
+            'jobOffer' => $jobOffer,
         ]);
     }
 
@@ -88,5 +89,4 @@ final class ConsultantHomeController extends AbstractController
 
         return $this->redirectToRoute('consultant_show_all_jobOffer');
     }
-
 }
