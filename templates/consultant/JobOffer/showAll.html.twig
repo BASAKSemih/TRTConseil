@@ -18,15 +18,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for jobOffer in jobOffers %}
+                {% for job_offer in jobOffers %}
                     <tr>
-                        <th scope="row">{{ jobOffer.id }}</th>
-                        <td>{{ jobOffer.jobName }}</td>
-                        <td>{{ jobOffer.workplace }}</td>
-                        <td>{{ jobOffer.createdAt|date('d/m/Y') }}</td>
-                        <td>{{ jobOffer.recruiter.email }}</td>
+                        <th scope="row">{{ job_offer.id }}</th>
+                        <td>{{ job_offer.jobName }}</td>
+                        <td>{{ job_offer.workplace }}</td>
+                        <td>{{ job_offer.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ job_offer.recruiter.email }}</td>
                         <th scope="col">
-                            {% if jobOffer.isVerified == false %}
+                            {% if job_offer.isVerified == false %}
                                 Offre à vérifier
                             {% else %}
                                 Offre déjà vérifier
