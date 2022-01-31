@@ -13,6 +13,10 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method JobOffer|null findOneBy(array $criteria, array $orderBy = null)
  * @method               findAll()                                                                     array<int, JobOffer>
  * @method               findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, JobOffer>
+ *
+ * @template T
+ *
+ * @extends ServiceEntityRepository<JobOffer>
  */
 final class JobOfferRepository extends ServiceEntityRepository
 {

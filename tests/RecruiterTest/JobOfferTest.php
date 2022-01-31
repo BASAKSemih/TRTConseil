@@ -29,11 +29,9 @@ class JobOfferTest extends WebTestCase
             'job_offer[description]' => 'lorem',
             'job_offer[salary]' => '2500€',
             'job_offer[schedule]' => '8-19h',
-
         ]);
         $client->submit($form);
         $client->followRedirect();
         self::assertRouteSame('recruiter_homePage');
     }
-
 }

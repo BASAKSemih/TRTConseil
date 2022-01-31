@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use App\Entity\Recruiter\JobOffer;
 use App\Entity\Recruiter\Recruiter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -35,6 +36,17 @@ final class RecruiterFixtures extends Fixture
             ->setPassword($this->userPasswordHasher->hashPassword($recruiter2, '12'));
 
         $manager->persist($recruiter2);
+        $manager->flush();
+
+        $jobOffer = new JobOffer();
+        $jobOffer
+            ->setRecruiter($recruiter2)
+            ->setDescription('test')
+            ->setJobName('test')
+            ->setSalary('e')
+            ->setSchedule('e')
+            ->setWorkplace('e');
+        $manager->persist($jobOffer);
         $manager->flush();
     }
 }

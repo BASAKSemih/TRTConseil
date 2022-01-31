@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        {{ jobOffer.jobName }}
+        {{ jobOffer.description }}
+        <a href="{{ path('consultant_confirm_jobOffer', {'idJobOffer': jobOffer.id}) }}" class="btn btn-info">Vérifier l'offre emploie</a>
+
+    </div>
+
+{% endblock %}
