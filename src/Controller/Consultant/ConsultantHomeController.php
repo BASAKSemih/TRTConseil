@@ -54,7 +54,7 @@ final class ConsultantHomeController extends AbstractController
     {
         $jobOffers = $this->jobOfferRepository->findByIsVerified(false);
 
-        return $this->render('consultant/showAll.html.twig', [
+        return $this->render('consultant/JobOffer/showAll.html.twig', [
             'jobOffers' => $jobOffers,
         ]);
     }
