@@ -48,5 +48,17 @@ final class RecruiterFixtures extends Fixture
             ->setWorkplace('e');
         $manager->persist($jobOffer);
         $manager->flush();
+
+        $jobOffer2 = new JobOffer();
+        $jobOffer2
+            ->setRecruiter($recruiter2)
+            ->setDescription('verifierd')
+            ->setJobName('verifierd')
+            ->setSalary('verifierd')
+            ->setSchedule('verifierd')
+            ->setIsVerified(true)
+            ->setWorkplace('verifierd');
+        $manager->persist($jobOffer2);
+        $manager->flush();
     }
 }

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Candidate\Security;
 
-use App\Entity\Candidate\Candidate;
+use App\Entity\Candidate;
 use App\Form\Candidate\CandidateType;
 use App\Repository\Candidate\CandidateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -37,6 +38,14 @@ final class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $checkEmail = $this->candidateRepository->findOneByEmail($candidate->getEmail());
             if (!$checkEmail) {
+                /** @var UploadedFile $cv */
+                $cv = $form->get('cvPath')->getData();
+                $file = md5(uniqid()).'.'.$cv->guessExtension();
+                $cv->move(
+                    $this->getParameter('cv_directory'),
+                    $file
+                );
+                $candidate->setCvPath($file);
                 $passwordHash = $this->passwordHasher->hashPassword($candidate, $candidate->getPassword());
                 $candidate->setPassword($passwordHash);
                 $this->entityManager->persist($candidate);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Candidate\Candidate;
+use App\Entity\Candidate;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -22,6 +22,7 @@ final class CandidateFixtures extends Fixture
             ->setEmail('candidat@info.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
+            ->setCvPath('')
             ->setPassword($this->userPasswordHasher->hashPassword($candidate, '12'));
 
         $manager->persist($candidate);
@@ -31,6 +32,7 @@ final class CandidateFixtures extends Fixture
             ->setEmail('candidat@verif.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
+            ->setCvPath('')
             ->setIsVerified(true)
             ->setPassword($this->userPasswordHasher->hashPassword($candidate2, '12'));
 
