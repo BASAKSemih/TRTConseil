@@ -22,7 +22,7 @@ final class CandidateFixtures extends Fixture
             ->setEmail('candidat@info.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
-            ->setCvPath("")
+            ->setCvPath('')
             ->setPassword($this->userPasswordHasher->hashPassword($candidate, '12'));
 
         $manager->persist($candidate);
@@ -32,7 +32,7 @@ final class CandidateFixtures extends Fixture
             ->setEmail('candidat@verif.fr')
             ->setFirstName('John')
             ->setLastName('Doe')
-            ->setCvPath("")
+            ->setCvPath('')
             ->setIsVerified(true)
             ->setPassword($this->userPasswordHasher->hashPassword($candidate2, '12'));
 

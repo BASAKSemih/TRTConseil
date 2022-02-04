@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Candidate;
 
 use App\Repository\Recruiter\JobOfferRepository;
-use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +28,7 @@ final class CandidateHomeController extends AbstractController
         }
 
         return $this->render('candidate/home.html.twig', [
-            'jobOffers' => $jobOffers
+            'jobOffers' => $jobOffers,
         ]);
     }
 }
