@@ -3,11 +3,20 @@
 namespace App\Tests\CandidateTest;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
 class RegisterTest extends WebTestCase
 {
+    private function createPdf(): UploadedFile
+    {
+        $fileName = 'foo.pdf';
+        $filePath = sprintf('%s/foo.pdf', __DIR__);
+
+        return new UploadedFile($filePath, $fileName, null, null, true);
+    }
+
     public function testSuccessFullRegistration(): void
     {
         $client = static::createClient();
@@ -19,6 +28,7 @@ class RegisterTest extends WebTestCase
             'candidate[email]' => 'user@user.com',
             'candidate[firstName]' => 'John',
             'candidate[lastName]' => 'Doe',
+            'candidate[cvPath]' => $this->createPdf(),
             'candidate[password][first]' => 'password',
             'candidate[password][second]' => 'password',
         ]);
@@ -56,6 +66,7 @@ class RegisterTest extends WebTestCase
             'candidate[email]' => 'user@user.com',
             'candidate[firstName]' => 'John',
             'candidate[lastName]' => 'Doe',
+            'candidate[cvPath]' => $this->createPdf(),
             'candidate[password][first]' => 'password',
             'candidate[password][second]' => 'password',
         ]);
@@ -65,6 +76,7 @@ class RegisterTest extends WebTestCase
             'candidate[email]' => 'user@user2.com',
             'candidate[firstName]' => 'John',
             'candidate[lastName]' => 'Doe',
+            'candidate[cvPath]' => $this->createPdf(),
             'candidate[password][first]' => 'password',
             'candidate[password][second]' => 'password',
         ]);

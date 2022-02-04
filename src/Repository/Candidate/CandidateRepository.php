@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository\Candidate;
 
-use App\Entity\Candidate\Candidate;
+use App\Entity\Candidate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -12,20 +12,20 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @method Candidate|null find($id, $lockMode = null, $lockVersion = null)
+ * @method \App\Entity\Candidate|null find($id, $lockMode = null, $lockVersion = null)
  * @method Candidate|null findOneBy(array $criteria, array $orderBy = null)
  * @method                findAll()                                                                     array<int, Candidate>
  * @method                findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, Candidate>
  *
  * @template T
  *
- * @extends ServiceEntityRepository<Candidate>
+ * @extends ServiceEntityRepository<\App\Entity\Candidate>
  */
 final class CandidateRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Candidate::class);
+        parent::__construct($registry, \App\Entity\Candidate::class);
     }
 
     /**

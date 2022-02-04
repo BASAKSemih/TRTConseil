@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Candidate;
+namespace App\Entity;
 
 use App\Repository\Candidate\CandidateRepository;
 use DateTimeImmutable;
@@ -48,6 +48,9 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $cvPath;
 
     public function __construct()
     {
@@ -186,6 +189,18 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getCvPath(): ?string
+    {
+        return $this->cvPath;
+    }
+
+    public function setCvPath(string $cvPath): self
+    {
+        $this->cvPath = $cvPath;
 
         return $this;
     }

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Candidate;
 
-use App\Entity\Candidate\Candidate;
+use App\Entity\Candidate;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -60,6 +61,15 @@ final class CandidateType extends AbstractType
             ->add('lastName', TextType::class, [
                 'required' => true,
                 'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('cvPath', FileType::class, [
+                'label' => false,
+                'multiple' => false,
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],

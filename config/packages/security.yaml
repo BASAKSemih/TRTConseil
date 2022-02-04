@@ -15,7 +15,7 @@ security:
                 property: email
         app_candidate_provider:
             entity:
-                class: App\Entity\Candidate\Candidate
+                class: App\Entity\Candidate
                 property: email
         app_consultant_provider:
             entity:

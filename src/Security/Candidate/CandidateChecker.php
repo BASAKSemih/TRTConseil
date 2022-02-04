@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security\Candidate;
 
-use App\Entity\Candidate\Candidate;
+use App\Entity\Candidate;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -13,7 +13,7 @@ class CandidateChecker implements UserCheckerInterface
 {
     public function checkPreAuth(UserInterface $user): void
     {
-        if (!$user instanceof Candidate) {
+        if (!$user instanceof \App\Entity\Candidate) {
             return;
         }
     }
