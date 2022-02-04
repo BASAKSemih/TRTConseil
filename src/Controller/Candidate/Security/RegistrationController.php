@@ -9,6 +9,7 @@ use App\Form\Candidate\CandidateType;
 use App\Repository\Candidate\CandidateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -37,6 +38,7 @@ final class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $checkEmail = $this->candidateRepository->findOneByEmail($candidate->getEmail());
             if (!$checkEmail) {
+                /** @var UploadedFile $cv */
                 $cv = $form->get('cvPath')->getData();
                 $file = md5(uniqid()).'.'.$cv->guessExtension();
                 $cv->move(
