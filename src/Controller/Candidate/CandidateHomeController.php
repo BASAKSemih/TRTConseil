@@ -57,7 +57,7 @@ final class CandidateHomeController extends AbstractController
         if (false === $jobOffer->getIsVerified()) {
             $this->addFlash('warning', "Cette offre emploi n'est pas vérifier veuillez patienter");
 
-            return $this->redirectToRoute('candidate_homePage');
+            return $this->redirectToRoute('homePage');
         }
         $postJobOffers = $jobOffer->getPostJobOffers();
         /** @var PostJobOffer $item */
