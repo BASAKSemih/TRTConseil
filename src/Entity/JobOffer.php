@@ -7,6 +7,8 @@ namespace App\Entity;
 use App\Entity\Recruiter\Recruiter;
 use App\Repository\Recruiter\JobOfferRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
@@ -42,9 +44,16 @@ class JobOffer
     #[ORM\JoinColumn(nullable: false)]
     private Recruiter $recruiter;
 
+    /**
+     * @var Collection<PostJobOffer>
+     */
+    #[ORM\OneToMany(mappedBy: 'jobOffer', targetEntity: PostJobOffer::class)]
+    private Collection $postJobOffers;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->postJobOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +153,36 @@ class JobOffer
     public function setRecruiter(Recruiter $recruiter): self
     {
         $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PostJobOffer[]
+     */
+    public function getPostJobOffers(): Collection
+    {
+        return $this->postJobOffers;
+    }
+
+    public function addPostJobOffer(PostJobOffer $postJobOffer): self
+    {
+        if (!$this->postJobOffers->contains($postJobOffer)) {
+            $this->postJobOffers[] = $postJobOffer;
+            $postJobOffer->setJobOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostJobOffer(PostJobOffer $postJobOffer): self
+    {
+        if ($this->postJobOffers->removeElement($postJobOffer)) {
+            // set the owning side to null (unless already changed)
+            if ($postJobOffer->getJobOffer() === $this) {
+                $postJobOffer->setJobOffer(null);
+            }
+        }
 
         return $this;
     }

@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use App\Repository\Candidate\CandidateRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,9 +54,16 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private string $cvPath;
 
+    /**
+     * @var Collection<PostJobOffer>
+     */
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: PostJobOffer::class)]
+    private Collection $postJobOffers;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->postJobOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,6 +210,36 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCvPath(string $cvPath): self
     {
         $this->cvPath = $cvPath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PostJobOffer[]
+     */
+    public function getPostJobOffers(): Collection
+    {
+        return $this->postJobOffers;
+    }
+
+    public function addPostJobOffer(PostJobOffer $postJobOffer): self
+    {
+        if (!$this->postJobOffers->contains($postJobOffer)) {
+            $this->postJobOffers[] = $postJobOffer;
+            $postJobOffer->setCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostJobOffer(PostJobOffer $postJobOffer): self
+    {
+        if ($this->postJobOffers->removeElement($postJobOffer)) {
+            // set the owning side to null (unless already changed)
+            if ($postJobOffer->getCandidate() === $this) {
+                $postJobOffer->setCandidate(null);
+            }
+        }
 
         return $this;
     }
