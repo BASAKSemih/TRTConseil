@@ -2,7 +2,6 @@
 
 namespace App\Form\Recruiter;
 
-use App\Entity\Recruiter\JobOffer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -62,7 +61,7 @@ class JobOfferType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => JobOffer::class,
+            'data_class' => \App\Entity\JobOffer::class,
         ]);
     }
 }

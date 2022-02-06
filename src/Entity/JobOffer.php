@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Recruiter;
+namespace App\Entity;
 
+use App\Entity\Recruiter\Recruiter;
 use App\Repository\Recruiter\JobOfferRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
