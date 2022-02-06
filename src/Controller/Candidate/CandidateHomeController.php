@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Candidate;
 
+use App\Entity\Candidate;
+use App\Entity\JobOffer;
+use App\Entity\PostJobOffer;
 use App\Repository\Recruiter\JobOfferRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(name: 'candidate_')]
 final class CandidateHomeController extends AbstractController
 {
-    public function __construct(protected JobOfferRepository $jobOfferRepository)
+    public function __construct(protected JobOfferRepository $jobOfferRepository, protected EntityManagerInterface $entityManager)
     {
     }
 
@@ -36,12 +40,14 @@ final class CandidateHomeController extends AbstractController
     #[Route('/espace-candidat/postuler/{IdJobOffer}', name: 'post_jobOffer')]
     public function postJobOffer(int $IdJobOffer): RedirectResponse
     {
-        $user = $this->getUser();
-        if (!$user) {
+        /** @var Candidate $candidate */
+        $candidate = $this->getUser();
+        if (!$candidate) {
             $this->addFlash('warning', 'Erreur');
 
             return $this->redirectToRoute('homePage');
         }
+        /** @var JobOffer $jobOffer */
         $jobOffer = $this->jobOfferRepository->findOneById($IdJobOffer);
         if (!$jobOffer) {
             $this->addFlash('warning', "Cette offre emploi n'existe pas");
@@ -53,6 +59,24 @@ final class CandidateHomeController extends AbstractController
 
             return $this->redirectToRoute('candidate_homePage');
         }
+        $postJobOffers = $jobOffer->getPostJobOffers();
+        /** @var PostJobOffer $item */
+        foreach ($postJobOffers as $item) {
+            if ($item->getCandidate() === $candidate) {
+                $this->addFlash('warning', "Vous avez déjà postulé a cette offre emploi");
+
+                return $this->redirectToRoute('candidate_homePage');
+            }
+        }
+
+
+        $postJobOffer->setCandidate($candidate);
+        $postJobOffer->setJobOffer($jobOffer);
+        $this->entityManager->persist($postJobOffer);
+        $this->entityManager->flush();
+        $this->addFlash('success', "Vous avez postulé a l'offre emploi");
+
+        return $this->redirectToRoute('candidate_homePage');
 
     }
 }
