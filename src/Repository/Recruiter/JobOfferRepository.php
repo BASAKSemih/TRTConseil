@@ -11,8 +11,8 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method \App\Entity\JobOffer|null find($id, $lockMode = null, $lockVersion = null)
  * @method \App\Entity\JobOffer|null findOneBy(array $criteria, array $orderBy = null)
- * @method               findAll()                                                                     array<int, JobOffer>
- * @method               findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, JobOffer>
+ * @method                           findAll()                                                                     array<int, JobOffer>
+ * @method                           findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, JobOffer>
  *
  * @template T
  *

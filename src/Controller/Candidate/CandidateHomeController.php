@@ -54,7 +54,7 @@ final class CandidateHomeController extends AbstractController
 
             return $this->redirectToRoute('candidate_homePage');
         }
-        if ($jobOffer->getIsVerified() === false) {
+        if (false === $jobOffer->getIsVerified()) {
             $this->addFlash('warning', "Cette offre emploi n'est pas vérifier veuillez patienter");
 
             return $this->redirectToRoute('candidate_homePage');
@@ -63,13 +63,12 @@ final class CandidateHomeController extends AbstractController
         /** @var PostJobOffer $item */
         foreach ($postJobOffers as $item) {
             if ($item->getCandidate() === $candidate) {
-                $this->addFlash('warning', "Vous avez déjà postulé a cette offre emploi");
+                $this->addFlash('warning', 'Vous avez déjà postulé a cette offre emploi');
 
                 return $this->redirectToRoute('candidate_homePage');
             }
         }
-
-
+        $postJobOffer = new PostJobOffer();
         $postJobOffer->setCandidate($candidate);
         $postJobOffer->setJobOffer($jobOffer);
         $this->entityManager->persist($postJobOffer);
@@ -77,6 +76,5 @@ final class CandidateHomeController extends AbstractController
         $this->addFlash('success', "Vous avez postulé a l'offre emploi");
 
         return $this->redirectToRoute('candidate_homePage');
-
     }
 }
