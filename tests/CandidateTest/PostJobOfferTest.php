@@ -61,5 +61,4 @@ class PostJobOfferTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('candidate_homePage');
     }
-
 }
