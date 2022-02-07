@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Consultant;
 
 use App\Repository\Candidate\CandidateRepository;
+use App\Repository\PostJobOfferRepository;
 use App\Repository\Recruiter\JobOfferRepository;
 use App\Repository\Recruiter\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,7 +21,8 @@ final class ConsultantHomeController extends AbstractController
         protected CandidateRepository $candidateRepository,
         protected RecruiterRepository $recruiterRepository,
         protected JobOfferRepository $jobOfferRepository,
-        protected EntityManagerInterface $entityManager
+        protected EntityManagerInterface $entityManager,
+        protected PostJobOfferRepository $postJobOfferRepository
     ) {
     }
 
@@ -37,17 +39,19 @@ final class ConsultantHomeController extends AbstractController
         return $this->render('consultant/home.html.twig');
     }
 
-    #[Route('/espace-consultant/liste-des-utilisateurs-non-verifier', name: 'show_all')]
+    #[Route('/espace-consultant/page-des-informations-non-verifier', name: 'show_all')]
     public function showAllNoVerifiedUser(): Response
     {
         $candidates = $this->candidateRepository->findByIsVerified(false);
         $recruiters = $this->recruiterRepository->findByIsVerified(false);
         $jobOffers = $this->jobOfferRepository->findByIsVerified(false);
+        $postJobOffers = $this->postJobOfferRepository->findByIsVerified(false);
 
         return $this->render('consultant/showAll.html.twig', [
             'candidates' => $candidates,
             'recruiters' => $recruiters,
             'jobOffers' => $jobOffers,
+            'postJobOffers' => $postJobOffers
         ]);
     }
 
@@ -91,4 +95,27 @@ final class ConsultantHomeController extends AbstractController
 
         return $this->redirectToRoute('consultant_show_all_jobOffer');
     }
+
+    #[Route('/espace-consultant/confirmer-la-candidate/{idPostJobOffer}', name: 'confirm_postjobOffer')]
+    public function confirmPostJobOffer(int $idPostJobOffer): RedirectResponse
+    {
+        $postJobOffer = $this->postJobOfferRepository->findOneById($idPostJobOffer);
+        if (!$postJobOffer) {
+            $this->addFlash('warning', "Cette candidature n'existe pas n'existe pas");
+
+            return $this->redirectToRoute('consultant_show_all_jobOffer');
+        }
+        if ($postJobOffer->getIsVerified() === true) {
+            $this->addFlash('warning', "Cette candidature à déjà été vérifier");
+
+            return $this->redirectToRoute('consultant_show_all_jobOffer');
+        }
+        $postJobOffer->setIsVerified(true);
+        $this->entityManager->flush();
+        $this->addFlash('success', "l'offre emploi à bien été vérifier");
+
+        return $this->redirectToRoute('consultant_show_all_jobOffer');
+
+    }
+
 }

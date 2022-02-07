@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\PostJobOffer;
@@ -9,10 +11,14 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method PostJobOffer|null find($id, $lockMode = null, $lockVersion = null)
  * @method PostJobOffer|null findOneBy(array $criteria, array $orderBy = null)
- * @method PostJobOffer[]    findAll()
- * @method PostJobOffer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PostJobOffer[]    findAll()                                                   array<int, PostJobOffer>
+ * @method PostJobOffer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) array<array-key, PostJobOffer>
+ *
+ * @template T
+ *
+ * @extends ServiceEntityRepository<PostJobOffer>
  */
-class PostJobOfferRepository extends ServiceEntityRepository
+final class PostJobOfferRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
