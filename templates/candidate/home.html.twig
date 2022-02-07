@@ -23,7 +23,7 @@
                         <td>{{ job_offer.workplace }}</td>
                         <td>{{ job_offer.createdAt|date('d/m/Y') }}</td>
                         <td>{{ job_offer.recruiter.email }}</td>
-                        <td><a href="" class="btn btn-success">Postuler</a></td>
+                        <td><a href="{{ path('candidate_post_jobOffer', {'IdJobOffer': job_offer.id}) }}" class="btn btn-success">Postuler</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -8,7 +8,9 @@
                 <label for="">{{ candidate.lastName }}</label>
                 <label for="">{{ candidate.email }}</label>
                 <label for="">{{ candidate.createdAt|date('d/m/Y') }}</label>
+                <a class="btn btn-info" href="/uploads/pdf/{{ candidate.cvPath }}" target="_blank">{{ candidate.cvPath }}</a>
                 <label for="">{% if candidate.isVerified == false %}
+
                         <a href="{{ path('consultant_confirm_account_candidate', {'idCandidate': candidate.id}) }}" class="btn btn-info">Vérifier le compte</a>
                     {% else %}
                         Compte déjà vérifier

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Recruiter;
 
-use App\Entity\Recruiter\JobOffer;
 use App\Entity\Recruiter\Recruiter;
 use App\Form\Recruiter\JobOfferType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,7 +41,7 @@ final class RecruiterHomeController extends AbstractController
 
             return $this->redirectToRoute('homePage');
         }
-        $jobOffer = new JobOffer();
+        $jobOffer = new \App\Entity\JobOffer();
         $form = $this->createForm(JobOfferType::class, $jobOffer)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOffer->setRecruiter($recruiter);

@@ -69,7 +69,7 @@ final class CandidateType extends AbstractType
                 'label' => false,
                 'multiple' => false,
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],

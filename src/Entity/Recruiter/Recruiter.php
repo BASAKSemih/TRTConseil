@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Recruiter;
 
+use App\Entity\JobOffer;
 use App\Repository\Recruiter\RecruiterRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
