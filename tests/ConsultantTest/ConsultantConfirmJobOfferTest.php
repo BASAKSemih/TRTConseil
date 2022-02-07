@@ -38,5 +38,4 @@ final class ConsultantConfirmJobOfferTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('consultant_show_all_jobOffer');
     }
-
 }

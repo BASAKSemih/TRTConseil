@@ -51,7 +51,7 @@ final class ConsultantHomeController extends AbstractController
             'candidates' => $candidates,
             'recruiters' => $recruiters,
             'jobOffers' => $jobOffers,
-            'postJobOffers' => $postJobOffers
+            'postJobOffers' => $postJobOffers,
         ]);
     }
 
@@ -105,8 +105,8 @@ final class ConsultantHomeController extends AbstractController
 
             return $this->redirectToRoute('consultant_show_all_jobOffer');
         }
-        if ($postJobOffer->getIsVerified() === true) {
-            $this->addFlash('warning', "Cette candidature à déjà été vérifier");
+        if (true === $postJobOffer->getIsVerified()) {
+            $this->addFlash('warning', 'Cette candidature à déjà été vérifier');
 
             return $this->redirectToRoute('consultant_show_all_jobOffer');
         }
@@ -115,7 +115,5 @@ final class ConsultantHomeController extends AbstractController
         $this->addFlash('success', "l'offre emploi à bien été vérifier");
 
         return $this->redirectToRoute('consultant_show_all_jobOffer');
-
     }
-
 }
