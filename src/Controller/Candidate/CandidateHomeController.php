@@ -37,8 +37,8 @@ final class CandidateHomeController extends AbstractController
         ]);
     }
 
-    #[Route('/espace-candidat/postuler/{IdJobOffer}', name: 'post_jobOffer')]
-    public function postJobOffer(int $IdJobOffer): RedirectResponse
+    #[Route('/espace-candidat/postuler/{idJobOffer}', name: 'post_jobOffer')]
+    public function postJobOffer(int $idJobOffer): RedirectResponse
     {
         /** @var Candidate $candidate */
         $candidate = $this->getUser();
@@ -48,7 +48,7 @@ final class CandidateHomeController extends AbstractController
             return $this->redirectToRoute('homePage');
         }
         /** @var JobOffer $jobOffer */
-        $jobOffer = $this->jobOfferRepository->findOneById($IdJobOffer);
+        $jobOffer = $this->jobOfferRepository->findOneById($idJobOffer);
         if (!$jobOffer) {
             $this->addFlash('warning', "Cette offre emploi n'existe pas");
 

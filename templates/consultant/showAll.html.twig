@@ -103,14 +103,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for postJobOffer in postJobOffers %}
+                {% for post_joboffer in postJobOffers %}
                     <tr>
-                        <th scope="row">{{ postJobOffer.candidate.id }}</th>
-                        <td>{{ postJobOffer.candidate.firstName }}</td>
-                        <td>{{ postJobOffer.candidate.lastName }}</td>
-                        <td>{{ postJobOffer.candidate.email }}</td>
-                        <td>{{ postJobOffer.createdAt|date('d/m/Y') }}</td>
-                        <td> <a class="btn btn-info" href="/uploads/pdf/{{ postJobOffer.candidate.cvPath }}" target="_blank">{{ postJobOffer.candidate.cvPath }}</a></td>
+                        <th scope="row">{{ post_joboffer.candidate.id }}</th>
+                        <td>{{ post_joboffer.candidate.firstName }}</td>
+                        <td>{{ post_joboffer.candidate.lastName }}</td>
+                        <td>{{ post_joboffer.candidate.email }}</td>
+                        <td>{{ post_joboffer.createdAt|date('d/m/Y') }}</td>
+                        <td> <a class="btn btn-info" href="/uploads/pdf/{{ post_joboffer.candidate.cvPath }}" target="_blank">{{ post_joboffer.candidate.cvPath }}</a></td>
                         <th scope="col"></th>
                     </tr>
                 {% endfor %}

@@ -30,7 +30,7 @@ class PostJobOfferTest extends WebTestCase
         /** @var JobOffer $jobOffer */
         $jobOffer = $jobOfferRepository->findOneByJobName('test');
         $crawler = $client->request(Request::METHOD_GET, $router->generate('candidate_post_jobOffer', [
-            'IdJobOffer' => $jobOffer->getId(),
+            'idJobOffer' => $jobOffer->getId(),
         ]));
         $client->followRedirect();
         self::assertRouteSame('homePage');
@@ -56,7 +56,7 @@ class PostJobOfferTest extends WebTestCase
         /** @var JobOffer $jobOffer */
         $jobOffer = $jobOfferRepository->findOneByJobName('verifierd');
         $crawler = $client->request(Request::METHOD_GET, $router->generate('candidate_post_jobOffer', [
-            'IdJobOffer' => $jobOffer->getId(),
+            'idJobOffer' => $jobOffer->getId(),
         ]));
         $client->followRedirect();
         self::assertRouteSame('candidate_homePage');
