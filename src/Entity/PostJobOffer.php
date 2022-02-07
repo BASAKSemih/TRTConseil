@@ -43,7 +43,7 @@ class PostJobOffer
         return $this->candidate;
     }
 
-    public function setCandidate(?Candidate $candidate): self
+    public function setCandidate(Candidate $candidate): self
     {
         $this->candidate = $candidate;
 
@@ -55,7 +55,7 @@ class PostJobOffer
         return $this->jobOffer;
     }
 
-    public function setJobOffer(?JobOffer $jobOffer): self
+    public function setJobOffer(JobOffer $jobOffer): self
     {
         $this->jobOffer = $jobOffer;
 
