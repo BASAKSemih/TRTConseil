@@ -22,7 +22,7 @@ final class ConsultantHomeController extends AbstractController
         protected RecruiterRepository $recruiterRepository,
         protected JobOfferRepository $jobOfferRepository,
         protected EntityManagerInterface $entityManager,
-        protected PostJobOfferRepository $postJobOfferRepository
+        protected PostJobOfferRepository $postJobRepository
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ConsultantHomeController extends AbstractController
         $candidates = $this->candidateRepository->findByIsVerified(false);
         $recruiters = $this->recruiterRepository->findByIsVerified(false);
         $jobOffers = $this->jobOfferRepository->findByIsVerified(false);
-        $postJobOffers = $this->postJobOfferRepository->findByIsVerified(false);
+        $postJobOffers = $this->postJobRepository->findByIsVerified(false);
 
         return $this->render('consultant/showAll.html.twig', [
             'candidates' => $candidates,
@@ -99,7 +99,7 @@ final class ConsultantHomeController extends AbstractController
     #[Route('/espace-consultant/confirmer-la-candidate/{idPostJobOffer}', name: 'confirm_postjobOffer')]
     public function confirmPostJobOffer(int $idPostJobOffer): RedirectResponse
     {
-        $postJobOffer = $this->postJobOfferRepository->findOneById($idPostJobOffer);
+        $postJobOffer = $this->postJobRepository->findOneById($idPostJobOffer);
         if (!$postJobOffer) {
             $this->addFlash('warning', "Cette candidature n'existe pas n'existe pas");
 
