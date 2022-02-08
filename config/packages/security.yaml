@@ -31,7 +31,7 @@ security:
             provider: app_consultant_provider
             custom_authenticator: App\Security\Consultant\ConsultantAuthenticator
             logout:
-                path: security_candidate_logout
+                path: security_consultant_logout
                 target: homePage
         candidate:
             lazy: true
