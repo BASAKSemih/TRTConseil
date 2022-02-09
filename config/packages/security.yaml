@@ -21,10 +21,22 @@ security:
             entity:
                 class: App\Entity\Consultant\Consultant
                 property: email
+        app_admin_provider:
+            entity:
+                class: App\Entity\Admin\Admin
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            lazy: true
+            pattern: ^/espace-administrateur
+            provider: app_admin_provider
+            custom_authenticator: App\Security\Admin\AdminAuthenticator
+            logout:
+                path: security_admin_logout
+                target: homePage
         consultant:
             lazy: true
             pattern: ^/espace-consultant

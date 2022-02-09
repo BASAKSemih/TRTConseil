@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Admin;
+use App\Entity\Admin\Admin;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
