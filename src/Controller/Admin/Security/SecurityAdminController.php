@@ -19,12 +19,12 @@ final class SecurityAdminController extends AbstractController
         if ($this->getUser()) {
             $this->addFlash('warning', 'Vous êtes déjà connecter');
 
-            return $this->redirectToRoute('consultant_homePage');
+            return $this->redirectToRoute('admin_homePage');
         }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('consultant/security/login.html.twig', [
+        return $this->render('admin/security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);

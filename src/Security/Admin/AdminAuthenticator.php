@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
 class AdminAuthenticator extends AbstractLoginFormAuthenticator
 {
-    public const LOGIN_ROUTE = 'security_candidate_login';
+    public const LOGIN_ROUTE = 'security_admin_login';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -50,7 +50,7 @@ class AdminAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('candidate_homePage'));
+        return new RedirectResponse($this->urlGenerator->generate('admin_homePage'));
     }
 
     protected function getLoginUrl(Request $request): string
