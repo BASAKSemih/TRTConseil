@@ -14,6 +14,7 @@ final class AdminFixtures extends Fixture
     public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
     {
     }
+
     public function load(ObjectManager $manager): void
     {
         $admin = new Admin();
@@ -25,6 +26,5 @@ final class AdminFixtures extends Fixture
 
         $manager->persist($admin);
         $manager->flush();
-
     }
 }

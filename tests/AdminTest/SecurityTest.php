@@ -25,5 +25,4 @@ final class SecurityTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('admin_homePage');
     }
-
 }
