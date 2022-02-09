@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Connexion Admin{% endblock %}
 
 {% block body %}
     <form method="post" class="mt-5 container" name="login">
@@ -10,7 +10,7 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('security_candidate_logout') }}">Logout</a>
+                You are logged in as {{ app.user.username }}, <a href="{{ path('security_admin_logout') }}">Logout</a>
             </div>
         {% endif %}
         <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
