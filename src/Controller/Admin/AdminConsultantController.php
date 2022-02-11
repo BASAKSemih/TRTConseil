@@ -38,7 +38,7 @@ class AdminConsultantController extends AbstractController
         }
 
         return $this->render('admin/consultant/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }
